@@ -47,6 +47,15 @@
                 login();
             });
 
+            $('#signupSubmit').click(function() {
+                signup();
+            });
+
+            function signup(){
+                document.cookie = 'path=/';
+                window.location = '/signup.html';
+            }
+
             function login() {
                 $('#errorRow').hide();
                 $('#logoutRow').hide();
@@ -76,7 +85,7 @@
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand">FitnessJiffy</a>
+            <a class="navbar-brand">Workout Challengers</a>
         </div>
     </div>
 </div>
@@ -110,6 +119,7 @@
             <div class="row">
                 <div class="center-block center-content">
                     <button class="btn btn-default" type="button" id="loginSubmit">Sign In</button>
+                    <button class="btn btn-default" type="button" id="signupSubmit">Sign up</button>
                 </div>
             </div>
             <div class="row padded-bottom"/>

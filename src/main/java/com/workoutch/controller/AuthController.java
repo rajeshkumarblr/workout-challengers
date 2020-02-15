@@ -49,7 +49,7 @@ public class AuthController extends AbstractController {
                 .setSubject(username)
                 .claim("email", username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(1)))
+                .setExpiration(new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(10)))
                 .signWith(SignatureAlgorithm.HS256, "secretkey")
                 .compact();
         loginResponse.setToken(token);

@@ -54,6 +54,19 @@ public final class UserDTO implements Serializable {
     }
 
     public UserDTO() {
+        this.id = id;
+        this.gender = User.Gender.MALE;
+        this.birthdate = new Date(0);
+        this.heightInInches = 0;
+        this.activityLevel = User.ActivityLevel.SEDENTARY;
+        this.email = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.timeZone = "Asia/Kolkata";
+        this.currentWeight = 0.0;
+        this.bmi = 0;
+        this.maintenanceCalories = 0;
+        this.dailyPoints = 0.0;
     }
 
 

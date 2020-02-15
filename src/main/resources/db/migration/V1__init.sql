@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
 --
--- Host: localhost    Database: fitnessjiffy
+-- Host: localhost    Database: WorkoutChallengers
 -- ------------------------------------------------------
 -- Server version	5.6.25-log
 
@@ -59,7 +59,7 @@ CREATE TABLE `exercise_performed` (
   UNIQUE KEY `UK_oc1fognywyv0fn3dcogp2nn8e` (`user_id`,`exercise_id`,`date`),
   KEY `FK_52nub55r5musrfyjsvpth76bh` (`exercise_id`),
   CONSTRAINT `FK_52nub55r5musrfyjsvpth76bh` FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`id`),
-  CONSTRAINT `FK_o3b6rrwboc2sshggrq8hjw3xu` FOREIGN KEY (`user_id`) REFERENCES `fitnessjiffy_user` (`id`)
+  CONSTRAINT `FK_o3b6rrwboc2sshggrq8hjw3xu` FOREIGN KEY (`user_id`) REFERENCES `WorkoutChallengers_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -165,7 +165,7 @@ CREATE TABLE `food_eaten` (
   UNIQUE KEY `UK_o17xkhthgnqe2icjgamjbun93` (`user_id`,`food_id`,`date`),
   KEY `FK_a6t0pikjip5a2k9jntw8s0755` (`food_id`),
   CONSTRAINT `FK_a6t0pikjip5a2k9jntw8s0755` FOREIGN KEY (`food_id`) REFERENCES `food` (`id`),
-  CONSTRAINT `FK_fqyglhvonkjbp4kd7htfy02cb` FOREIGN KEY (`user_id`) REFERENCES `fitnessjiffy_user` (`id`)
+  CONSTRAINT `FK_fqyglhvonkjbp4kd7htfy02cb` FOREIGN KEY (`user_id`) REFERENCES `WorkoutChallengers_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -194,7 +194,7 @@ CREATE TABLE `report_data` (
   `user_id` binary(16) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_5bacnypi0a0a5vcxaqovytq93` (`user_id`,`date`),
-  CONSTRAINT `FK_mm7j7rv35awetxl921usmtdm4` FOREIGN KEY (`user_id`) REFERENCES `fitnessjiffy_user` (`id`)
+  CONSTRAINT `FK_mm7j7rv35awetxl921usmtdm4` FOREIGN KEY (`user_id`) REFERENCES `WorkoutChallengers_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

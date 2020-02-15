@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 final class ProfileController extends AbstractController {
@@ -41,6 +42,24 @@ final class ProfileController extends AbstractController {
         userDTO.setLastName((String) payload.get("lastName"));
         userDTO.setTimeZone((String) payload.get("timeZone"));
         userService.updateUser(userDTO);
+    }
+
+    @PostMapping(value = "/api/user/create")
+    public final void createProfile(
+            @RequestBody final Map<String, Object> payload,
+            final HttpServletRequest request
+    ) throws IOException {
+       // final UserDTO userDTO = currentAuthenticatedUser(request);
+        final UserDTO userDTO = new UserDTO();
+
+        userDTO.setId(UUID.randomUUID());
+        userDTO.setEmail((String)payload.get("email"));
+        userDTO.setGender(User.Gender.fromString((String)payload.get("gender")));
+        userDTO.setFirstName((String) payload.get("firstName"));
+        userDTO.setLastName((String) payload.get("lastName"));
+
+        userService.createUser(userDTO,"password");
+
     }
 
     @PostMapping(value = "/api/user/password")

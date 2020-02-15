@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+
+    <!-- Version @application.version@ -->
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/static/bootstrap-datepicker/datepicker3.min.css" rel="stylesheet"/>
+    <link href="/static/css/main.css" rel="stylesheet"/>
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-28600243-4', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script>
+    $(function () {
+
+        function clearFlashMessages() {
+            $('#profileSuccessRow').hide();
+            $('#profileErrorRow').hide();
+        }
+
+        // Event handler to save the profile when the save button is clicked
+        $('#profileSubmit').click(function() {
+            console.log("profile submit clicked");
+            clearFlashMessages();
+
+            var data = {};
+
+            data['email'] = $('#email').val();
+            data['firstName'] = $('#firstName').val();
+            data['lastName'] = $('#lastName').val();
+            data['gender'] = $('input[name=gender]:checked').val();
+
+            $.ajax({
+                method: 'POST',
+                contentType: 'application/json',
+                url: '/api/user/create',
+                data: JSON.stringify(data)
+            }).done(function() {
+                //setupProfile();
+                $('#profileSuccessRow').show();
+            }).fail(function(jqXHR, textStatus) {
+                console.log('POST /api/user/create request failed: ' + jqXHR.status);
+                $('#profileErrorMessage').text('An error occurred');
+                $('#profileErrorRow').hide();
+            });
+        });
+
+    });
+    </script>
+
+</head>
+
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand">WorkoutChallengers</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/profile.html">Profile</a></li>
+                <li><a href="/food.html">Food</a></li>
+                <li><a href="/exercise">Exercise</a></li>
+                <li><a href="/report">Reports</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="javascript:{}" id="logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="page-container">
+    <div class="container main-container">
+
+        <section title="Profile">
+            <div class="row">
+                <div class="center-block center-content">
+                    <h2>User Profile</h2>
+                </div>
+            </div>
+            <div class="row" id="profileSuccessRow" style="display: none; padding-bottom: 10px;">
+                <div class="center-block center-content" style="color: green;">Profile successfully updated</div>
+            </div>
+            <div class="row" id="profileErrorRow" style="display: none; padding-bottom: 10px;">
+                <div class="center-block center-content" id="profileErrorMessage" style="color: red;"></div>
+            </div>
+
+            <div class="row padded-bottom"></div>
+            <div class="row padded-bottom"></div>
+            <div class="row padded-bottom">
+                <div class="col-sm-6 leftcolumn">
+                    Email:
+                </div>
+                <div class="col-sm-6 rightcolumn">
+                    <input class="form-control" type="text" id="email" maxlength="50" size="50"/>
+                </div>
+            </div>
+            <div class="row padded-bottom">
+                <div class="col-sm-6 leftcolumn">
+                    First Name:
+                </div>
+                <div class="col-sm-6 rightcolumn">
+                    <input class="form-control" type="text" id="firstName" maxlength="50" size="50"/>
+                </div>
+            </div>
+            <div class="row padded-bottom">
+                <div class="col-sm-6 leftcolumn">
+                    Last Name:
+                </div>
+                <div class="col-sm-6 rightcolumn">
+                    <input class="form-control" type="text" id="lastName" maxlength="50" size="50"/>
+                </div>
+            </div>
+            <div class="row padded-bottom">
+                <div class="col-sm-6 leftcolumn">
+                    Gender:
+                </div>
+                <div class="col-sm-6 rightcolumn">
+                    <div>
+                        <label class="radio control-label">
+                            <label class="radio inline">
+                                <input class="radio" type="radio" name="gender" id="female" value="FEMALE"/>
+                                female
+                            </label>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="radio control-label">
+                            <label class="radio inline">
+                                <input class="radio" type="radio" name="gender" id="male" value="MALE"/>
+                                male
+                            </label>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="center-block center-content">
+                    <button class="btn btn-default" id="profileSubmit" type="button">Save Profile</button>
+                </div>
+            </div>
+            <div class="row padded-bottom"/>
+        </section>
+    </div>
+</div>
+</body>
+</html>

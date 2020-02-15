@@ -55,6 +55,7 @@ public final class UserService {
             final UserDTO userDTO,
             final String password
     ) {
+        long _time = new java.util.Date().getTime();
         final User user = new User(
                 userDTO.getId(),
                 userDTO.getGender(),
@@ -66,8 +67,8 @@ public final class UserService {
                 userDTO.getFirstName(),
                 userDTO.getLastName(),
                 userDTO.getTimeZone(),
-                new Timestamp(new java.util.Date().getTime()),
-                new Timestamp(new java.util.Date().getTime())
+                new Timestamp(_time),
+                new Timestamp(_time)
         );
         userRepository.save(user);
         reportDataService.updateUserFromDate(user, new Date(System.currentTimeMillis()));
