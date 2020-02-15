@@ -1,12 +1,12 @@
 server:
-  port: 8081
+  port: 8080
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost/WORKOUTCHALLENGERS
+    url: jdbc:mysql://localhost/workout-challengers
     driverClassName: com.mysql.jdbc.Driver
-    username: root
-    password: abc@123
+    username: app
+    password: secret
     test-on-borrow: true
     validation-query: SELECT 1
   jpa:
