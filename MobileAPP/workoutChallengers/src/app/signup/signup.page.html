@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-justify-content-center">Workout Challengers</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="content-color">
+  <ion-row class="ion-justify-content-center">
+    <ion-text>
+      <h1>
+        Create your profile
+      </h1>
+    </ion-text>
+  </ion-row>
+
+  <ion-item>
+    <ion-label stacked>Email     :</ion-label>
+    <ion-input type="text" [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Firstname :</ion-label>
+    <ion-input type="text" [(ngModel)]="firstname"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Lastname :</ion-label>
+    <ion-input type="text" [(ngModel)]="lastname"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <div class="text-center mt-5">
+      <ion-item>
+        <ion-label stacked>Gender</ion-label>
+        <div>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of itemsList">
+              <input type="radio" [(ngModel)]="radioSelected" name="list_name" value="{{item.value}}"
+                (change)="onItemChange(item)" />
+              {{item.name}}
+            </li>
+          </ul>
+        </div>
+      </ion-item>
+    </div>
+  </ion-item>
+
+<ion-row class="ion-justify-content-center">
+  <ion-col ion-item no-lines no-padding text-center>
+    <ion-button expand="block" (click)="createProfile()">
+      Create
+    </ion-button>
+  </ion-col>
+</ion-row>
+
+</ion-content>

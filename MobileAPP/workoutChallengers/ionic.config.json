@@ -1,0 +1,8 @@
+{
+  "name": "workoutChallengers",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}
