@@ -3,10 +3,7 @@ package com.workoutch.controller;
 import com.workoutch.dto.UserDTO;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class AuthController extends AbstractController {
 
     @PostMapping("/userpass")
+    @CrossOrigin()
     public LoginResponse doLogin(
             @RequestBody final Map<String, Object> payload,
             final HttpServletResponse response

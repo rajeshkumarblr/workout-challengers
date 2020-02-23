@@ -3,11 +3,7 @@ package com.workoutch.controller;
 import com.workoutch.domain.User;
 import com.workoutch.dto.UserDTO;
 import com.workoutch.dto.WeightDTO;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,16 +15,19 @@ import java.util.UUID;
 final class ProfileController extends AbstractController {
 
     @GetMapping(value = "/")
+    @CrossOrigin()
     public final void handleRootUrl(final HttpServletResponse response) throws IOException {
         response.sendRedirect("/profile.html");
     }
 
     @GetMapping(value = "/api/user")
+    @CrossOrigin()
     public final UserDTO loadProfile(final HttpServletRequest request) {
         return currentAuthenticatedUser(request);
     }
 
     @PostMapping(value = "/api/user")
+    @CrossOrigin()
     public final void saveProfile(
             @RequestBody final Map<String, Object> payload,
             final HttpServletRequest request
@@ -45,6 +44,7 @@ final class ProfileController extends AbstractController {
     }
 
     @PostMapping(value = "/api/user/create")
+    @CrossOrigin()
     public final void createProfile(
             @RequestBody final Map<String, Object> payload,
             final HttpServletRequest request

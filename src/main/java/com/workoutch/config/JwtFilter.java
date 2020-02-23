@@ -23,6 +23,7 @@ class JwtFilter extends GenericFilterBean {
     final static private List<String> EXCLUDED_URIS = Arrays.asList(
             "/login.html",
             "/signup.html",
+            "/api/user/create",
             "/api/auth/userpass",
             "/favicon.ico"
     );
