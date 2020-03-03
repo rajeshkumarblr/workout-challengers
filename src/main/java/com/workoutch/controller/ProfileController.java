@@ -15,19 +15,19 @@ import java.util.UUID;
 final class ProfileController extends AbstractController {
 
     @GetMapping(value = "/")
-    @CrossOrigin()
+    //@CrossOrigin()
     public final void handleRootUrl(final HttpServletResponse response) throws IOException {
         response.sendRedirect("/profile.html");
     }
 
     @GetMapping(value = "/api/user")
-    @CrossOrigin()
+    //@CrossOrigin()
     public final UserDTO loadProfile(final HttpServletRequest request) {
         return currentAuthenticatedUser(request);
     }
 
     @PostMapping(value = "/api/user")
-    @CrossOrigin()
+    //@CrossOrigin()
     public final void saveProfile(
             @RequestBody final Map<String, Object> payload,
             final HttpServletRequest request
@@ -44,7 +44,7 @@ final class ProfileController extends AbstractController {
     }
 
     @PostMapping(value = "/api/user/create")
-    @CrossOrigin()
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public final void createProfile(
             @RequestBody final Map<String, Object> payload,
             final HttpServletRequest request
@@ -57,8 +57,7 @@ final class ProfileController extends AbstractController {
         userDTO.setGender(User.Gender.fromString((String)payload.get("gender")));
         userDTO.setFirstName((String) payload.get("firstName"));
         userDTO.setLastName((String) payload.get("lastName"));
-
-        userService.createUser(userDTO,"password");
+        userService.createUser(userDTO,(String) payload.get("password"));
 
     }
 

@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class AuthController extends AbstractController {
 
     @PostMapping("/userpass")
-    @CrossOrigin()
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public LoginResponse doLogin(
             @RequestBody final Map<String, Object> payload,
             final HttpServletResponse response
