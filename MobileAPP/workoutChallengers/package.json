@@ -1,16 +1,24 @@
 {
-  "name": "workoutChallengers",
+  "name": "workoutchallengers",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "npm run build && npm run --prefix ./cordova cordova",
+    "build": "ng build --output-path .cordova/www/ --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "proxies": [
+    {
+      "path": "/api/auth/userpass",
+      "proxyUrl": "http://192.168.1.14:8080",
+      "secure": false,
+      "changeOrigin": true
+    }
+  ],
   "private": true,
   "dependencies": {
     "@angular/common": "~8.2.14",
@@ -30,6 +38,7 @@
     "parse": "^2.11.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
+    "typescript-logging": "^0.6.4",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {

@@ -21,6 +21,8 @@ export class SignupPage implements OnInit {
   email : String;
   firstname : String;
   lastname : String;
+  password : String;
+  confirmPassword : String;
 
  
   constructor(private apiService : WcAPIServiceService,
@@ -55,6 +57,12 @@ export class SignupPage implements OnInit {
     profiledata.firstName = this.firstname;
     profiledata.lastName = this.lastname;
     profiledata.gender = this.selectedGender;
+    profiledata.password = this.password;
+
+    if (this.password != this.confirmPassword){
+      this.presentToast("password do not match",1500);
+      return;
+    }
 
     console.log(JSON.stringify(profiledata));
     this.apiService.createProfile(profiledata).subscribe(
@@ -63,8 +71,10 @@ export class SignupPage implements OnInit {
         this.navController.navigateRoot('/login');
       },
       error => {
-        //this.presentToast("Failed creating the profile",3000);
+        //console.log(error);
+        this.presentToast(JSON.stringify(error),5000);
       }
+  
     );
   }
 }

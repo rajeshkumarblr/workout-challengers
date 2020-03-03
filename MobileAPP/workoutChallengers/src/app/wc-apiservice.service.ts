@@ -26,7 +26,7 @@ export class WcAPIServiceService {
   private getBaseURL(): string {
     let baseURL : string;
     this.servername = localStorage.getItem("ServerName");
-    baseURL = 'http://' + this.servername + ':8080'
+    baseURL = 'https://' + this.servername + ':8080'
     return baseURL;
   }
 
@@ -39,25 +39,43 @@ export class WcAPIServiceService {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'my-auth-token',
-        'Access-Control-Allow-Origin': 'origin-list'
+        'Accept':'application/json',
+        //'Authorization': 'my-auth-token',
+        'Access-Control-Allow-Origin': 'origin-list',
+        'Access-Control-Allow-Methods' : 'GET',
+        'Access-Control-Allow-Headers': 'Content-Type'
       })
     };
 
-    return this.http.post(this.getBaseURL() + '/api/auth/userpass',
+    try{
+      return this.http.post(this.getBaseURL() + '/api/auth/userpass',
         JSON.stringify(payload),this.httpOptions);
+    }
+    catch(err){
+      console.log(err);
+    }
+    
+
+    // return this.http.post('/api/auth/userpass',
+    //     JSON.stringify(payload),this.httpOptions);
   }
 
   public createProfile(profile: userprofile) : Observable<any>{
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'my-auth-token',
-        'Access-Control-Allow-Origin': 'origin-list'
+        'Accept':'application/json',
+        //'Authorization': 'my-auth-token',
+        'Access-Control-Allow-Origin': 'origin-list',
+        'Access-Control-Allow-Methods' : 'POST',
+        'Access-Control-Allow-Headers': 'Content-Type'
       })
     };
     this.presentToast(this.getBaseURL(),2000);
     return this.http.post(this.getBaseURL() + '/api/user/create',
         JSON.stringify(profile),this.httpOptions);
+
+    // return this.http.post('/api/user/create',
+    //     JSON.stringify(profile),this.httpOptions);
   }
 }

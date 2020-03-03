@@ -50,13 +50,15 @@ export class LoginPage implements OnInit {
     this.apiService.authenticate(this.lusername,this.lpassword).subscribe(
       data => {
         console.log("Post result " , data);
+        this.login_status = "";
+        this.presentToast("Logged in successfully",2000);
       },
       error => {
         console.log("Error message " , error.error.error);
         this.login_status = error.error.error;
       }
 
-    );
+    )
   }
 
   signUp(){

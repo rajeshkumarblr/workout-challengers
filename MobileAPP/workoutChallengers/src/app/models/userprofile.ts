@@ -3,4 +3,5 @@ export class userprofile{
     firstName: String;
     lastName: String;
     gender: String;
+    password : String;
   }
