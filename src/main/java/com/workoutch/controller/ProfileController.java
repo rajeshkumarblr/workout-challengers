@@ -59,7 +59,6 @@ final class ProfileController extends AbstractController {
         userDTO.setLastName((String) payload.get("lastName"));
 
         userService.createUser(userDTO,"password");
-
     }
 
     @PostMapping(value = "/api/user/password")

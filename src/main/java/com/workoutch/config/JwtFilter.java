@@ -24,6 +24,7 @@ class JwtFilter extends GenericFilterBean {
             "/login.html",
             "/signup.html",
             "/api/auth/userpass",
+            "/api/user/create",
             "/favicon.ico"
     );
 
